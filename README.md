@@ -20,15 +20,15 @@ Each of your resources will have it's own module in charge of it's own data. Thi
 ## Product Routes
 `/products`
 - `POST` creates a new product
-  - The incoming request will look like this: `{ name: String, price: String, inventory: Number }`
-    - from this request you will save your data as `{ id: Number, name: String, price: String, inventory: Number }`
+  - The incoming request will look like this: `{ "name": String, "price": String, "inventory": Number }`
+    - from this request you will save your data as `{ "id": Number, "name": String, "price": String, "inventory": Number }`
       - **id** is a unique identifier for this item. You will generate this on the server side and it will be used to access specific products with it
     - Respond with `{ "success": Bool }`, **true** if successful otherwise **false**
 
 `/products/:id`
 - `PUT` edits a product. Finds a product in a collection with the same `id` value and updates the information.
-  - The incoming request will look like this: `{ id: Number, ... }`
-    - `...` represents a field to be edited for example: if the server was sent `{ id: 12, name: "Water Bed" }` the server will find the product with an **id** of **12** and change the `name` property to be `"Water Bed"`.
+  - The incoming request will look like this: `{ "id": Number, ... }`
+    - `...` represents a field to be edited for example: if the server was sent `{ "id": 12, "name": "Water Bed" }` the server will find the product with an **id** of **12** and change the `name` property to be `"Water Bed"`.
 
 `/products/:id`
 - `DELETE` removes a product by it's **id**.
@@ -58,8 +58,8 @@ Inside of your templates directory you should have the templates below in a dire
 ## Articles Routes
 `/articles`
 - `POST` creates a new article
-  - The incoming request will look like this: `{ title: String, body: String, author: String }`
-    - from this request you will save your data as `{ title: String, body: String, author: String, urlTitle: String }`
+  - The incoming request will look like this: `{ "title": String, "body": String, "author": String }`
+    - from this request you will save your data as `{ "title": String, "body": String, "author": String, "urlTitle": String }`
       - **title** is a unique identifier for this item. You will generate this on the server side and it will be used to access specific products with it
       - **urlTitle** is similar to the **title** that was passed in but instead is a URL Encoded version. *Javascript has a native way to url-encode strings*. 
         **example:** If given a title of `"The Best Magpie Developer of 2016"`, it's url-encoded equivilent is `"The%20Best%20Magpie%20Developer%20of%202016"`.
@@ -67,14 +67,14 @@ Inside of your templates directory you should have the templates below in a dire
 
 `/articles/:title`
 - `PUT` edits a product. Finds an article in a collection with the same `title` value and updates the information.
-  - The incoming request will look like this: `{ title: String, ... }`
-    - `...` represents a field to be edited for example: if the server was sent `{ title: "The Best Magpie Developer of 2016" }` the server will find an article with an **id** of **12** and change the `title` property to be `"The Best Magpie Developer of 2016"`.
+  - The incoming request will look like this: `{ "title": String, ... }`
+    - `...` represents a field to be edited for example: if the server was sent `{ "title": "The Best Magpie Developer of 2016", "body": "Removed content."}` the server will find an article with an **title** of **"The Best Magpie Developer of 2016"** and change the `body` property to be `"Removed content."`.
 
 `/article/:title`
 - `DELETE` removes a article by it's **title**.
   - Respond with `{ "success": Bool }`, **true** if successful otherwise **false**
 
-**note:** The **title** property is mandatory. If no other key is present then update the `title`.
+**note:** The **title** property is mandatory and at least one other key. If the intend is to change the title then use the key `newTitle`.
 
 =======
 
