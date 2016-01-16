@@ -121,9 +121,14 @@ Here are some middleware code for you to implement.
 
 # Resources
 [Dev League's Express slide deck](http://slides.com/sgnl/express-yourself-deux#/)
+
 [Dev League's Middleware slide deck](http://slides.com/joecarlson/middleware/#/)
+
 [Dev league's Templating (JADE) slide deck](http://slides.com/sgnl/templating/#/)
+
 [Dev League's Module Pattern slide deck](http://slides.com/jasonsewell/object-literals-and-ze-module-pattern#/)
 
+
 [Expressjs.com](https://www.expressjs.com)
+
 [Jade](https://jade-lang.com)
