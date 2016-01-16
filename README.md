@@ -102,7 +102,7 @@ Here are some middleware code for you to implement.
 **Analytics Tracker**
   - Scope: All incoming requests.
     - log to a file all uri that are requested. we need each request on it's own line
-      - format: `[method] [uri] [timestamp]`
+      - format: `[method] [uri] [timestamp] [all headers]`
       - file location: all logs should go into a directory called **logs** and end with the `.log` extension
       - file name: the logs should be separated per day, please figure out a way to create a nice file name which displays date. e.g. `2016.01-17.13-45-06.log`
 
@@ -118,3 +118,12 @@ Here are some middleware code for you to implement.
   - Scope: All incoming Requests
     - must **NOT** have this header.
       - if this header is present respond back with `{ "error": "sorry, we wanna track you" }`
+
+# Resources
+[Dev League's Express slide deck](http://slides.com/sgnl/express-yourself-deux#/)
+[Dev League's Middleware slide deck](http://slides.com/joecarlson/middleware/#/)
+[Dev league's Templating (JADE) slide deck](http://slides.com/sgnl/templating/#/)
+[Dev League's Module Pattern slide deck](http://slides.com/jasonsewell/object-literals-and-ze-module-pattern#/)
+
+[Expressjs.com](https://www.expressjs.com)
+[Jade](https://jade-lang.com)
