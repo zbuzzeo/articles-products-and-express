@@ -1,16 +1,16 @@
 # Articles, Products, and Express - Oh my!
 
 ## Tests
-Let the **Tests drive your development** or write your tests after. The choice is up to you! As for the testing tools use:
+Let the **tests drive your development** or write your tests after. The choice is up to you! As for the testing tools use:
   - [mocha](https://mochajs.org/)
   - [chai](https://chaijs.com/)
   - [supertest](https://github.com/visionmedia/supertest)
     - [supertest is built upon `superagent` so these docs will be helpful as well](https://github.com/visionmedia/superagent)
 
 ## Goal
-Build a mock application which will have 2 resources: Products and Articles. Each resource will have an implementation of **CRUD** (create, read, update, delete). You should make use of Express' **Router** module to keep your code organized. Routes go in a directory called **routes**.
+Build an application which will have 2 resources: Products and Articles. Each resource will have an implementation of **CRUD** (create, read, update, delete) and will be RESTful. You should make use of Express' **Router** module to keep your code organized. Routes go in a directory called **routes**.
 
-In addition, you will also have additional routes which will render **HTML** to the user. You will harness the power of **Jade** to build your templates and have them be dynamic. These templates should go in a directory called **templates**.
+In addition, you will also have additional routes which will render **HTML** to the user. You will harness the power of **Jade** to build your templates and have them be dynamic. These templates should go in a directory called **views**.
 
 Each of your resources will have it's own module in charge of it's own data. This module should have helper methods for retreiving data. Keep these files in a directory named **db**.
 
@@ -30,20 +30,24 @@ Each of your resources will have it's own module in charge of it's own data. Thi
   - The incoming request will look like this: `{ name: String, price: String, inventory: String }`
     - from this request you will save your data as `{ id: Number, name: String, price: Number, inventory: Number }`
       - **id** is a unique identifier for this item. You will generate this on the server side and it will be used to access specific products with it
-    - Respond with `{ "success": Bool }`, **true** if successful otherwise **false**
+    - If **successful** then redirect the user back to the `/products` route.
+    - If not **successful** then send the user back to the **new** article route, `/products/new` and some way to communicate the error back to the user via templating.
 
 `/products/:id`
 - `PUT` edits a product. Finds a product in a collection with the same `id` value and updates the information.
   - The incoming request will look like this: `{ id: Number, ... }`
     - `...` represents a field to be edited for example: if the server was sent `{ id: 12, name: "Water Bed" }` the server will find the product with an **id** of **12** and change the `name` property to be `"Water Bed"`.
+    - If **successful** then redirect the user back to the `/products/:id` route, where `:id` is the product that was just edited, so that they can see the updated resource.
+    - If not **successful** then send the user back to the **new** article route, `/products/:id/edit` and some way to communicate the error back to the user via templating.
 
 `/products/:id`
 - `DELETE` removes a product by it's **id**.
-  - Respond with `{ "success": Bool }`, **true** if successful otherwise **false**
+  - If **successful** then redirect the user back to the `/products` page and some way to communicate to the user that this action was successful.
+  - If not **successful** then send the user back to the **new** article route, `/products/:id`, where `:id` is the product that was just edited and a message that this action was unsucessful.
 
 ======
 
-**Routes below will output html generated from our templates.**
+**Routes below will output html generated from our template engine.**
 Inside of your templates directory you should have the templates below in a directory called **products**
 
 `/products`
@@ -52,7 +56,7 @@ Inside of your templates directory you should have the templates below in a dire
 
 `/products/:id/edit`
   - `GET` responds with **HTML** generated from your templates.
-    - The HTML should contain a form (with values already pre-filled?) so that a user can update the information for a product. This form points to your server's route for editing a product.
+    - The HTML should contain a form, with values already pre-filled, so that a user can update the information for a product. This form points to your server's route for editing a product.
   - file name: **edit.jade**
 
 `/products/new`
@@ -70,16 +74,20 @@ Inside of your templates directory you should have the templates below in a dire
       - **title** is a unique identifier for this item.
       - **urlTitle** is similar to the **title** that was passed in but instead is a URL Encoded version. *Javascript has a native way to url-encode strings*.
         **example:** If given a title of `"The Best Magpie Developer of 2016"`, it's url-encoded equivilent is `"The%20Best%20Magpie%20Developer%20of%202016"`.
-    - Respond with `{ "success": Bool }`, **true** if successful otherwise **false**
+    - If **successful** then redirect the user back to the `/articles` route.
+    - If not **successful** then send the user back to the **new** article route, `/articles/new` and some way to communicate the error back to the user via templating.
 
 `/articles/:title`
 - `PUT` edits a product. Finds an article in a collection with the same `title` value and updates the information.
   - The incoming request will look like this: `{ title: String, ... }`
     - `...` represents a field to be edited for example: if the server was sent `{ title: "The Best Magpie Developer of 2016" }` the server will find an article with a `title` property to be `"The Best Magpie Developer of 2016"`.
+    - If **successful** then redirect the user back to the `/articles/:title` route, where `:title` is the article that was just edited, so that they can see the updated resource.
+    - If not **successful** then send the user back to the **new** article route, `/article/:title/edit` and some way to communicate the error back to the user via templating.
 
 `/articles/:title`
 - `DELETE` removes a article by it's **title**.
-  - Respond with `{ "success": Bool }`, **true** if successful otherwise **false**
+  - If **successful** then redirect the user back to the `/articles` page and some way to communicate to the user that this action was successful.
+  - If not **successful** then send the user back to the **new** article route, `/products/:id`, where `:id` is the product that was just edited and a message that this action was unsucessful.
 
 **note:** The **title** property is mandatory. If no other key is present then update the `title`.
 
@@ -94,7 +102,7 @@ Inside of your templates directory you should have the templates below in a dire
 
 `/articles/:title/edit`
   - `GET` responds with **HTML** generated from your templates.
-    - The HTML should contain a form (with values already pre-filled?) so that a user can update the information for an article. This form points to your server's route for editing an article.
+    - The HTML should contain a form, with values already pre-filled, so that a user can update the information for an article. This form points to your server's route for editing an article.
   - file name: **edit.jade**
 
 `/articles/new`
