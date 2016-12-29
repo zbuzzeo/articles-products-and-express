@@ -10,7 +10,7 @@ Let the **Tests drive your development** or write your tests after. The choice i
 ## Goal
 Build a mock application which will have 2 resources: Products and Articles. Each resource will have an implementation of **CRUD** (create, read, update, delete). You should make use of Express' **Router** module to keep your code organized. Routes go in a directory called **routes**.
 
-In addition, you will also have additional routes which will render **HTML** to the user. You will harness the power of the **PugJs Template Engine** to build your templates and have them be dynamic. These templates should go in a directory called **templates**.
+In addition, you will also have additional routes which will render **HTML** to the user. You will harness the power of the **Handlebars Template Engine** to build your templates and have them be dynamic. These templates should go in a directory called **templates**.
 
 Each of your resources will have it's own module in charge of it's own data. This module should have helper methods for retreiving data. Keep these files in a directory named **db**.
 
@@ -48,17 +48,17 @@ Inside of your templates directory you should have the templates below in a dire
 
 `/products`
   - `GET` responds with **HTML** generated from your template which displays all Products added thus far.
-    - file name: **index.pug**
+    - file name: **index.hbs**
 
 `/products/:id/edit`
   - `GET` responds with **HTML** generated from your templates.
     - The HTML should contain a form (with values already pre-filled?) so that a user can update the information for a product. This form points to your server's route for editing a product.
-  - file name: **edit.pug**
+  - file name: **edit.hbs**
 
 `/products/new`
   - `GET` responds with **HTML** generated from your templates.
     - The HTML should contain an empty form which a user will be able to create a new product. This form points to your server's route for creating a new product.
-  - file name: **new.pug**
+  - file name: **new.hbs**
 
 ## Storing Products
 
@@ -90,17 +90,17 @@ Inside of your templates directory you should have the templates below in a dire
 
 `/articles`
   - `GET` responds with **HTML** generated from your template which displays all Articles added thus far.
-  - file name: **index.pug**
+  - file name: **index.hbs**
 
 `/articles/:title/edit`
   - `GET` responds with **HTML** generated from your templates.
     - The HTML should contain a form (with values already pre-filled?) so that a user can update the information for an article. This form points to your server's route for editing an article.
-  - file name: **edit.pug**
+  - file name: **edit.hbs**
 
 `/articles/new`
   - `GET` responds with **HTML** generated from your templates.
     - The HTML should contain an empty form which a user will be able to create a new article. This form points to your server's route for creating a new article.
-  - file name: **new.pug**
+  - file name: **new.hbs**
 
 
 # Middleware
