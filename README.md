@@ -10,7 +10,7 @@ Let the **Tests drive your development** or write your tests after. The choice i
 ## Goal
 Build a mock application which will have 2 resources: Products and Articles. Each resource will have an implementation of **CRUD** (create, read, update, delete). You should make use of Express' **Router** module to keep your code organized. Routes go in a directory called **routes**.
 
-In addition, you will also have additional routes which will render **HTML** to the user. You will harness the power of the **Handlebars Template Engine** to build your templates and have them be dynamic. These templates should go in a directory called **templates**.
+In addition, you will also have additional routes which will render **HTML** to the user. You will harness the power of the **Handlebars Template Engine** with express using [handlebars-express](https://github.com/ericf/express-handlebars) to build your templates and have them be dynamic. These templates should go in a directory called **templates**.
 
 Each of your resources will have it's own module in charge of it's own data. This module should have helper methods for retreiving data. Keep these files in a directory named **db**.
 
