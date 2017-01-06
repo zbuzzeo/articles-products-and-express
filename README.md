@@ -19,6 +19,7 @@ Each of your resources will have it's own module in charge of it's own data. Thi
 [Here is a loose example of a module you'd build for `./db/articles.js`.](https://gist.github.com/sgnl/b17c4e8ac80349e23b9a)
 
 **Project Structure Example:**
+Note: If you are using Handlebars, your project structure might look a little different.
 
 ![image](https://cloud.githubusercontent.com/assets/3915598/12345781/987ddbc0-baf1-11e5-8837-cf4eb6e4400b.png)
 
@@ -53,6 +54,10 @@ Inside of your templates directory you should have the templates below in a dire
 `/products`
   - `GET` responds with **HTML** generated from your template which displays all Products added thus far.
     - file name: **index.hbs**
+
+`/products/:id`
+  - `GET` responds with **HTML** generated from your template which displays the Products information for the product with the corresponding id.
+    - file name: **product.hbs**
 
 `/products/:id/edit`
   - `GET` responds with **HTML** generated from your templates.
@@ -99,6 +104,10 @@ Inside of your templates directory you should have the templates below in a dire
 `/articles`
   - `GET` responds with **HTML** generated from your template which displays all Articles added thus far.
   - file name: **index.hbs**
+  
+`/articles/:title`
+  - `GET` responds with **HTML** generated from your template which displays the Article information for the article with the corresponding title.
+    - file name: **article.hbs**
 
 `/articles/:title/edit`
   - `GET` responds with **HTML** generated from your templates.
