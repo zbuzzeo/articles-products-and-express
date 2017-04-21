@@ -8,20 +8,25 @@ Let the **tests drive your development** or write your tests after. The choice i
     - [supertest is built upon `superagent` so these docs will be helpful as well](https://github.com/visionmedia/superagent)
 
 ## Goal
+
+### tl;dr
+You will be building the core of a Content Management System (CMS). You will be able to create, edit, and remove content. This project will have two types of content, which will be referred to as "Resources" below, `Articles` and `Products`. For each resource you will be creating two sets of routes, a set of Endpoints which respond to POST, PUT, and DELETE methods, and another set which will serve HTML content such as a directory listing, and form for editing a resource, and a form for creating a new resource of a certain type.
+
+Almost every website boils down to managing content.
+
+### Technical specifications
 Build an application which will have 2 resources: Products and Articles. Each resource will have an implementation of **CRUD** (create, read, update, delete) and will be RESTful. You should make use of Express' **Router** module to keep your code organized. Routes go in a directory called **routes**.
 
 In addition, you will also have additional routes which will render **HTML** to the user. You will harness the power of the **Handlebars Template Engine** with express using [handlebars-express](https://github.com/ericf/express-handlebars) to build your templates and have them be dynamic. These templates should go in a directory called **templates**.
 
 Each of your resources will have it's own module in charge of it's own data. This module should have helper methods for retreiving data. Keep these files in a directory named **db**.
 
-*note: we are not using a database, having a folder called db sort of sets up us for our next topic, databases.*
+*note: we are not using a database, having a folder called db. Later we will come back to this exercise and integrate a database. With tests already written and a db module, the refactor should go smoothly.*
 
 [Here is a loose example of a module you'd build for `./db/articles.js`.](https://gist.github.com/sgnl/b17c4e8ac80349e23b9a)
 
 **Project Structure Example:**
-Note: If you are using Handlebars, your project structure might look a little different.
-
-![image](https://cloud.githubusercontent.com/assets/3915598/12345781/987ddbc0-baf1-11e5-8837-cf4eb6e4400b.png)
+![image](https://cloud.githubusercontent.com/assets/3915598/25292586/7b79a2f0-2672-11e7-8340-fef87ff4cf80.png)
 
 # Routes
 
@@ -104,7 +109,7 @@ Inside of your templates directory you should have the templates below in a dire
 `/articles`
   - `GET` responds with **HTML** generated from your template which displays all Articles added thus far.
   - file name: **index.hbs**
-  
+
 `/articles/:title`
   - `GET` responds with **HTML** generated from your template which displays the Article information for the article with the corresponding title.
     - file name: **article.hbs**
