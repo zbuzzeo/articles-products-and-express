@@ -49,7 +49,7 @@ Each of your resources will have it's own module in charge of it's own data. Thi
 `/products/:id`
 - `DELETE` removes a product by it's **id**.
   - If **successful** then redirect the user back to the `/products` page and some way to communicate to the user that this action was successful.
-  - If not **successful** then send the user back to the **new** article route, `/products/:id`, where `:id` is the product that was just edited and a message that this action was unsucessful.
+  - If not **successful** then send the user back to the **new** product route, `/products/:id`, where `:id` is the product that was just edited and a message that this action was unsucessful.
 
 ======
 
