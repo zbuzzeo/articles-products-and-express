@@ -97,7 +97,7 @@ Inside of your templates directory you should have the templates below in a dire
 `/articles/:title`
 - `DELETE` removes a article by it's **title**.
   - If **successful** then redirect the user back to the `/articles` page and some way to communicate to the user that this action was successful.
-  - If not **successful** then send the user back to the **new** article route, `/article/:id`, where `:id` is the product that was just edited and a message that this action was unsucessful.
+  - If not **successful** then send the user back to the **new** article route, `/article/:title`, where `:title` is the article that was just edited and a message that this action was unsucessful.
 
 **note:** The **title** property is mandatory. If no other key is present then update the `title`.
 
