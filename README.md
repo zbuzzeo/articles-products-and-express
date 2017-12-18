@@ -143,5 +143,42 @@ Here are some middleware code for you to implement.
     - must have the header `version: 1.0`
       - if not respond back with `{ "error": "bad headers" }`
 
+---
+
+# Setting up Knex.js (2nd iteration)
+
+In the following iteration of this project, each resource will be interacting with a database and its own individual table.
+
+### Create database and tables
+
+Let's start by creating a `articles-products.sql` script file in our `db` directory to create create our database and tables.
+
+Name your database `articles_products` and create the `articles` and `products` tables with the correct schema.
+
+**Example SQL script structure**
+
+```
+.
+├── db
+│   └── products.js
+│   └── articles.js
+│   └── articles-products.sql
+...
+```
+
+Enter into the `psql` shell and run the script from the root of your project to create your database and tables.
+
+```bash
+$ \i db/articles-products.sql;
+```
+
+### Knex.js
+
+Now, we need to integrate `knex.js` to help us perform our tables and query them for data!
+
+Folow the [knex.js setup guide](https://gist.github.com/NigelEarle/80150ff1c50031e59b872baf0e474977) to get `knex.js` integrated into your project.
+
+We will be doing our dynamic database queries using specifically the **knex.raw()** method from `knex.js` with raw SQL queries. You can refer to the official documentation for creating raw queries [here](http://knexjs.org/#Raw-Queries).
+
 ## Stretch Goal
 MAKE IT PRETTY
