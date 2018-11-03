@@ -1,6 +1,6 @@
 version: '3'
 services:
-  articles-products-and-expres:
+  articles-products-and-express:
     image: ${DOCKERHUB_NAME}/${IMAGE_NAME}:${IMAGE_VERSION}
     env_file: .env
     environment:
