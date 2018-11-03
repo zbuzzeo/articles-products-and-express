@@ -8,8 +8,8 @@ services:
     command: ["npm", "run", "dev"]
     container_name: ${IMAGE_NAME}
     volumes:
-      - ".:/app/:rw"
-      - /app/node_modules
+      - ".:/app"
+      # - /app/node_modules
     env_file: .env
     environment:
       NODE_ENV: development
