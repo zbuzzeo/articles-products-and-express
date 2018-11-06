@@ -145,3 +145,9 @@ Here are some middleware code for you to implement.
 
 ## Stretch Goal
 MAKE IT PRETTY
+
+## Docker Development 
+ - `docker-compose up` to bring up services.
+ - `docker-compose down` to destroy services.
+ - `docker-compose build` to rebuild container after adding new node module.
+ - `docker-compose prune` after doing a `docker-compose down` when new node module added.
