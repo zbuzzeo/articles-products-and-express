@@ -4,7 +4,7 @@
   "description": "## Tests Let the **tests drive your development** or write your tests after. The choice is up to you! As for the testing tools use:   - [mocha](https://mochajs.org/)   - [chai](https://chaijs.com/)   - [supertest](https://github.com/visionmedia/supertest)     - [supertest is built upon `superagent` so these docs will be helpful as well](https://github.com/visionmedia/superagent)",
   "main": "index.js",
   "scripts": {
-    "dev": "npx gulp & npx nodemon app.js",
+    "dev": "./node_modules/.bin/gulp & ./node_modules/.bin/nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
