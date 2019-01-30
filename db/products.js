@@ -1,6 +1,6 @@
 'use strict';
 
-const products = [];
+let products = [];
 const methods = {};
 
 const getAllProducts = () => {
@@ -16,6 +16,8 @@ const foundMatch = (checkObj) => {
 
   products.forEach(product => {
     if (product['name'] === checkObj['name']) {
+      exists = true;
+    } else if (product['id'] === checkObj['id']) {
       exists = true;
     }
   });
@@ -38,7 +40,6 @@ const addProduct = (obj, res) => {
   if (success) {
     obj['id'] = products.length;
     products.push(obj);
-    console.log(getAllProducts());
   }
 
   return { "message": message, "success": success };
@@ -49,19 +50,28 @@ const updateProduct = (id, newProduct) => {
     return product.id === id;
   });
 
-  oldProduct.name = newProduct.name;
-  oldProduct.price = newProduct.price;
-  oldProduct.inventory = newProduct.inventory;
+  let success = oldProduct ? true : false;
+  let message = success ? (
+    'POST operation successful. Check rendering.'
+  ) : (
+    'POST operation unsuccessful.'
+  );
+
+  if (oldProduct) {
+    oldProduct.name = newProduct.name;
+    oldProduct.price = newProduct.price;
+    oldProduct.inventory = newProduct.inventory;
+  }
 
   console.log(getAllProducts());
 
-  return oldProduct;
+  return { "message": message, "success": success }
 }
 
 const removeProduct = (id) => {
   let withoutId = getAllProducts().filter(product => { return product.id !== id });
 
-  return productsData = withoutId;
+  return products = withoutId;
 }
 
 module.exports = {
