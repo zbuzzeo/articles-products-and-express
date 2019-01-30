@@ -1,26 +1,10 @@
 'use strict';
 
 const products = [];
+const methods = {};
 
-const express = require('express');
-const bodyParser = require('body-parser');
-const router = express.Router();
-
-router.reqHandler = (type, obj, res) => {
-  switch (type) {
-    case 'GET':
-      getHandler(obj, res);
-      break;
-    case 'POST':
-      postHandler(obj, res);
-      break;
-    case 'PUT':
-      putHandler(obj, res);
-      break;
-    case 'DELETE':
-      deleteHandler(obj, res);
-      break;
-  }
+const getAllProducts = () => {
+  return products;
 }
 
 const foundMatch = (checkObj) => {
@@ -39,11 +23,11 @@ const foundMatch = (checkObj) => {
   return exists;
 }
 
-const getHandler = (obj, res) => {
-  
+const getProduct = (obj, res) => {
+
 }
 
-const postHandler = (obj, res) => {
+const addProduct = (obj, res) => {
   let success = !foundMatch(obj);
   let message = success ? (
     'POST operation successful. Check rendering.'
@@ -51,32 +35,39 @@ const postHandler = (obj, res) => {
     'POST operation unsuccessful.'
   );
 
-  // here...
-  // if successful, then redirect to /products. if unsuccessful, then redirect to /products/new and render an error message via templating.
-
   if (success) {
     obj['id'] = products.length;
     products.push(obj);
-    res.redirect('/products');
+    console.log(getAllProducts());
   }
 
-  // redirect to URL of new product
-  // database handles the data first. so calling res.redirect() here might lead to a blank page. This could potentially redirect to the new product page BEFORE the material is rendered to the page. Maybe use redirect() in ../routes/products.js
-  // using res.redirect()... https://expressjs.com/en/4x/api.html#res.redirect
-
-  res.send({ "message": message, "success": success });
   return { "message": message, "success": success };
 }
 
-const putHandler = (obj, res) => {
+const updateProduct = (id, newProduct) => {
+  let oldProduct = getAllProducts().find(product => {
+    return product.id === id;
+  });
 
+  oldProduct.name = newProduct.name;
+  oldProduct.price = newProduct.price;
+  oldProduct.inventory = newProduct.inventory;
+
+  console.log(getAllProducts());
+
+  return oldProduct;
 }
 
-const deleteHandler = (obj, res) => {
+const removeProduct = (id) => {
+  let withoutId = getAllProducts().filter(product => { return product.id !== id });
 
+  return productsData = withoutId;
 }
 
 module.exports = {
-  data: products,
-  router: router
+  getData: getAllProducts,
+  getProduct : getProduct,
+  addProduct : addProduct,
+  updateProduct : updateProduct,
+  removeProduct : removeProduct
 }
