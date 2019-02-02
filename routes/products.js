@@ -31,17 +31,31 @@ router.post('/', (req, res) => {
   }
 });
 
+// router.put('/:id', (req, res) => {
+//   let id = Number(req.params.id);
+//   if (products.updateProduct(id, req.body).success) {
+//     res.redirect('/:id');
+//   } else {
+//     res.redirect('/:id/edit');
+//   }
+// });
+
 router.put('/:id', (req, res) => {
   let id = Number(req.params.id);
-  if (products.updateProduct(id, req.body).success) {
-    res.redirect('/:id');
-  } else {
+  let product = req.body;
+
+  if (isNaN(id) || (typeof product.name || typeof product.price || typeof product.inventory) !== 'string') {
     res.redirect('/:id/edit');
   }
 });
 
 router.delete('/:id', (req, res) => {
   let id = Number(req.params.id);
+
+  if (isNaN(id)) {
+    res.redirect('/products/:id');
+  }
+
   products.removeProduct(id);
   res.redirect('/products');
 });

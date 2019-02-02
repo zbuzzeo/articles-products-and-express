@@ -69,9 +69,18 @@ const updateProduct = (id, newProduct) => {
 }
 
 const removeProduct = (id) => {
+  // let success = foundMatch(id);
+  // let message = success ? (
+  //   'POST operation successful. Check rendering.'
+  // ) : (
+  //   'POST operation unsuccessful.'
+  // );
+
   let withoutId = getAllProducts().filter(product => { return product.id !== id });
 
   return products = withoutId;
+
+  // return { "message": message, "success": success }
 }
 
 module.exports = {
