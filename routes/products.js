@@ -7,7 +7,6 @@ const validate = require('../middleware/validation');
 
 const productInfo = {
   products: undefined,
-  properties: undefined,
 }
 
 router.get('/', (req, res) => {

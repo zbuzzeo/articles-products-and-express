@@ -5,11 +5,11 @@
 // the price property is a number.
 // the inventory property is valid input.
 
-const basicValidation = (req) => {
+const dataValidationProducts = (req) => {
   const data = req.body;
   let passed = true;
 
-  if (!data.name || data.name.length < 0) {
+  if (!data.name || !data.name.length) {
     console.log('name HIT');
     passed = false;
   }
@@ -27,18 +27,46 @@ const basicValidation = (req) => {
   return passed;
 }
 
+const dataValidationArticles = (req) => {
+  const data = req.body;
+  let passed = true;
+
+  if (!data.title || !data.title.length) {
+    console.log('title HIT');
+    passed = false;
+  }
+
+  if (!data.author) {
+    console.log('author HIT');
+    passed = false;
+  }
+
+  if (!data.body) {
+    console.log('body HIT');
+    passed = false
+  }
+
+  return passed;
+}
+
 const validateProduct = (req, res, next) => {
-  const passed = basicValidation(req);
+  const passed = dataValidationProducts(req);
 
   if (passed) {
     next();
   } else {
-    res.redirect('/products/new');
+    res.redirect('products/new');
   }
 }
 
 const validateArticle = (req, res, next) => {
-  let passed;
+  const passed = dataValidationArticles(req);
+
+  if (passed) {
+    next();
+  } else {
+    res.redirect('articles/new');
+  }
 }
 
 // might use later
