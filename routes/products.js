@@ -98,7 +98,7 @@ router.delete('/:id', validate.products, (req, res) => {
     .del()
     .then(console.log)
     .then(() => { 
-      res.redirect('/');
+      res.redirect('/products');
     })
     .catch((err) => {
       throw err;

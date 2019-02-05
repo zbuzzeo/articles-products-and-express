@@ -92,6 +92,8 @@ const validateArticle = (req, res, next) => {
 //   }
 // }
 
+
+// need to expand validation functions. some of them have different redirect routes and these single functions redirect to one place.
 module.exports = {
   // use later
   // products : {
