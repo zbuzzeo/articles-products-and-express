@@ -1,0 +1,13 @@
+<h3>smoking articles</h3>
+
+{{#each articles}}
+<ul class="product">
+  <li class="title">Title: {{this.title}}</li>
+  <li class="author">Author: {{this.author}}</li>
+  <li class="body">Body: {{this.body}}</li>
+</ul>
+
+<form action="/articles/{{this.url_title}}/edit" method="GET" enctype="application/x-www-form-urlencoded">
+  <input type="submit" value="edit">
+</form>
+{{/each}}
