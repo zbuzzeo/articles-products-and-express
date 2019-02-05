@@ -39,9 +39,8 @@ router.get('/:url_title', (req, res) => {
 router.get('/:url_title/edit?', (req, res) => {
   let url_title = req.params.url_title;
 
-  knex
-    .select('title', 'author', 'body', 'updated_at')
-    .from('articles')
+  knex('articles')
+    .select('url_title', 'title', 'author', 'body', 'updated_at')
     .where('url_title', url_title)
     .then((selection) => {
       articleInfo.articles = selection[0];
