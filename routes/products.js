@@ -81,7 +81,7 @@ router.put('/:id', validate.products, (req, res) => {
     .returning('*')
     .then(console.log)
     .then(() => {
-      res.redirect('/:id');
+      res.redirect(`/${id}`);
     })
     .catch((err) => {
       throw err;

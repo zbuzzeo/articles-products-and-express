@@ -20,7 +20,30 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
+  const id = req.params.id;
 
+  knex
+    .select('url_title', 'title', 'author', 'body', 'created_at', 'updated_at')
+    .from('articles')
+    .where('id', id)
+    .then((selection) => {
+      console.log(selection);
+      articleInfo.articles = selection[0];
+      res.render('articles/article', articleInfo);
+    });
+});
+
+router.get('/:id/edit?', (req, res) => {
+  const id = req.params.id;
+
+  knex
+    .select('title', 'author', 'body', 'updated_at')
+    .from('articles')
+    .where('id', id)
+    .then((selection) => {
+      articleInfo.articles = selection[0];
+      res.render('articles/edit', articleInfo);
+    });
 });
 
 router.post('/', validate.articles, (req, res) => {
