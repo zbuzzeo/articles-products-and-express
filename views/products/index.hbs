@@ -1,0 +1,14 @@
+<h3>Smoker</h3>
+
+{{#each products}}
+<ul class="product">
+  <li class="name">{{this.name}}</li>
+  <li class="updated_at">Last updated: {{this.updated_at}}</li>
+  <li class="price">Price: ${{this.price}}</li>
+  <li class="stock">Left in stock: {{this.inventory}}</li>
+</ul>
+
+<form action="/products/{{this.id}}/edit" method="GET" enctype="application/x-www-form-urlencoded">
+  <input type="submit" value="edit">
+</form>
+{{/each}}

@@ -1,0 +1,8 @@
+<h3>Products</h3>
+
+{{#with products}}
+  <li class="name">{{this.name}}</li>
+  <li class="updated_at">Last updated: {{this.updated_at}}</li>
+  <li class="price">Price: ${{this.price}}</li>
+  <li class="inventory">Left in stock: {{this.inventory}}</li>
+{{/with}}

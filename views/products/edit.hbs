@@ -1,0 +1,12 @@
+<h3>SMOKER</h3>
+
+{{#with products}}
+<form action="/products/:id/edit?">
+  name: <input type="text" name="name" placeholder={{this.name}}>
+  price: <input type="text" name="price" placeholder={{this.price}}>
+  left in stock: <input type="text" name="inventory" placeholder={{this.inventory}}> 
+</form>
+<form action="/products/:id/edit?" method="PUT">
+<input type="submit" value="update">
+</form>
+{{/with}}
