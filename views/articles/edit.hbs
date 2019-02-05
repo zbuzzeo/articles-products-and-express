@@ -1,12 +1,12 @@
 <h3>SMOKER</h3>
 
 {{#with articles}}
-<form action="/articles/:id/edit?">
+<form action="/articles/:url_title/edit?">
   title: <input type="text" name="title" placeholder={{this.title}}>
   author: <input type="text" name="author" placeholder={{this.author}}>
   body: <input type="text" name="body" placeholder={{this.body}}> 
 </form>
-<form action="/articles/:id/edit?" method="PUT">
+<form action="/articles/:url_title" method="PUT">
 <input type="submit" value="update">
 </form>
 {{/with}}

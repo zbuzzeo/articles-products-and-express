@@ -60,6 +60,7 @@ const validateProduct = (req, res, next) => {
 }
 
 const validateArticle = (req, res, next) => {
+  console.log(`req.body is:`); console.log(req.body);
   const passed = dataValidationArticles(req);
 
   if (passed) {

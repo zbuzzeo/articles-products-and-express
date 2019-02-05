@@ -69,7 +69,6 @@ router.post('/', validate.articles, (req, res) => {
 });
 
 router.put('/:url_title', validate.articles, (req, res) => {
-  console.log('HITTY');
   const data = req.body;
   const url_title = req.params.url_title;
 
@@ -90,6 +89,22 @@ router.put('/:url_title', validate.articles, (req, res) => {
        res.redirect(`articles/${url_title}/edit`);
        throw err;
      });
+});
+
+router.delete('/:url_title', validate.articles, (req, res) => {
+  const url_title = req.params.url_title;
+  const data = req.body;
+
+  knex('articles')
+    .where('title', data.title)
+    .delete()
+    .then(() => {
+      res.redirect('/articles');
+    })
+    .catch((err) => {
+      res.redirect(`/articles/${url_title}`);
+      throw err;
+    });
 });
 
 module.exports = router;
