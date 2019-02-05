@@ -19,6 +19,10 @@ router.get('/', (req, res) => {
     });
 });
 
+router.get('/new', (req, res) => {
+  res.render('products/new');
+});
+
 router.get('/:id', (req, res) => {
   const id = req.params.id;
 
@@ -43,10 +47,6 @@ router.get('/:id/edit?', (req, res) => {
       productInfo.products = product[0];
       res.render('products/edit', productInfo);
     });
-});
-
-router.get('/new', (req, res) => {
-  res.render('products/new');
 });
 
 router.post('/', validate.products, (req, res) => {

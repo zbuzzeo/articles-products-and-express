@@ -10,22 +10,25 @@ const articleInfo = {
 }
 
 router.get('/', (req, res) => {
-  knex
-    .select('id', 'url_title', 'title', 'author', 'body')
-    .from('articles')
+  knex('articles')
+    .select('url_title', 'title', 'author', 'body')
     .then((selection) => {
+      console.log(selection);
       articleInfo.articles = selection;
-      res.render('articles/index', articleInfo);
-    });
+      res.render('articles/index', articleInfo)
+    })
 });
 
-router.get('/:id', (req, res) => {
-  const id = req.params.id;
+router.get('/new', (req, res) => {
+  res.render('articles/new');
+});
 
-  knex
+router.get('/:url_title', (req, res) => {
+  let url_title = req.params.url_title;
+  
+  knex('articles')
     .select('url_title', 'title', 'author', 'body', 'created_at', 'updated_at')
-    .from('articles')
-    .where('id', id)
+    .where('url_title', url_title)
     .then((selection) => {
       console.log(selection);
       articleInfo.articles = selection[0];
@@ -33,13 +36,13 @@ router.get('/:id', (req, res) => {
     });
 });
 
-router.get('/:id/edit?', (req, res) => {
-  const id = req.params.id;
+router.get('/:url_title/edit?', (req, res) => {
+  let url_title = req.params.url_title;
 
   knex
     .select('title', 'author', 'body', 'updated_at')
     .from('articles')
-    .where('id', id)
+    .where('url_title', url_title)
     .then((selection) => {
       articleInfo.articles = selection[0];
       res.render('articles/edit', articleInfo);
@@ -48,9 +51,6 @@ router.get('/:id/edit?', (req, res) => {
 
 router.post('/', validate.articles, (req, res) => {
   const data = req.body;
-
-  console.log(`before:`);
-  knex('articles').select().then(console.log);
 
   knex('articles')
     .insert({
@@ -63,11 +63,34 @@ router.post('/', validate.articles, (req, res) => {
       knex
         .select('title', 'url_title', 'author', 'body')
         .from('articles')
-        .then(console.log)
     )
     .then(() => {
       res.redirect('/articles');
     });
+});
+
+router.put('/:url_title', validate.articles, (req, res) => {
+  console.log('HITTY');
+  const data = req.body;
+  const url_title = req.params.url_title;
+
+  knex('articles')
+    .where('url_title', url_title)
+    .update({ 
+        url_title: encodeURI(data.title),
+        title: data.title,
+        author: data.author,
+        body: data.body
+      })
+      .returning('*')
+      .then(console.log)
+      .then(() => {
+        res.redirect(`articles/${url_title}`);
+      })
+     .catch((err) => {
+       res.redirect(`articles/${url_title}/edit`);
+       throw err;
+     });
 });
 
 module.exports = router;
